@@ -17,17 +17,14 @@ namespace DevTestAPI.Controllers
             _context = context;
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> GetPeople()
-        //{
-        //    return Ok(await _context.People.Select(p => ConvertPerson(p)).ToListAsync());
-        //}
-
         [HttpGet("{OrganizationId}")]
-        public async Task<IActionResult> GetPeople(int OrganizationId)
+        public async Task<IActionResult> GetPeopleByOrgId(int OrganizationId)
         {
             return Ok(await _context.People
                 .Where(p => p.OrganizationId == OrganizationId)
+                .Include(p => p.Organization)
+                .Include(p => p.PersonEmails)
+                .Include(p => p.PersonPhones)
                 .Select(p => ConvertPerson(p))
                 .ToListAsync());
         }
@@ -36,5 +33,16 @@ namespace DevTestAPI.Controllers
         {
             return new PersonApi(person);
         }
+
+        //[HttpGet]
+        //public async Task<IActionResult> GetPeople()
+        //{
+        //    return Ok(await _context.People
+        //        .Include(p => p.Organization)
+        //        .Include(p => p.PersonEmails)
+        //        .Include(p => p.PersonPhones)
+        //        .Select(p => ConvertPerson(p))
+        //        .ToListAsync());
+        //}
     }
 }
