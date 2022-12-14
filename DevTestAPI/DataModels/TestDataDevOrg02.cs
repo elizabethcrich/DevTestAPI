@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DevTestAPI.Models;
+namespace DevTestAPI.DataModels;
 
-public partial class TestDataDevOrg01
+public partial class TestDataDevOrg02
 {
     public string? Column0 { get; set; }
 

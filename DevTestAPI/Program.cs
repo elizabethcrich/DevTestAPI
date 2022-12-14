@@ -1,4 +1,4 @@
-using DevTestAPI.Models;
+using DevTestAPI.DataModels;
 
 var builder = WebApplication.CreateBuilder(args);
 

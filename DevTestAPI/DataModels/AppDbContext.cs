@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace DevTestAPI.Models;
+namespace DevTestAPI.DataModels;
 
 public partial class AppDbContext : DbContext
 {

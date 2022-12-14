@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DevTestAPI.Models;
+namespace DevTestAPI.DataModels;
 
 public partial class TestDataAllRawDatum
 {
