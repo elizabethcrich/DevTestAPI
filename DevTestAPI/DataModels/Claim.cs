@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace DevTestAPI.DataModels;
 
@@ -67,5 +68,6 @@ public partial class Claim
 
     public virtual Person ExternalPerson { get; set; } = null!;
 
+    [JsonIgnore]
     public virtual Organization Organization { get; set; } = null!;
 }

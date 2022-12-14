@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace DevTestAPI.DataModels;
 
@@ -55,8 +56,10 @@ public partial class Person
 
     public string? BillingPostalCode2 { get; set; }
 
+    [JsonIgnore]
     public virtual ICollection<ClaimFkcode> ClaimFkcodes { get; } = new List<ClaimFkcode>();
 
+    [JsonIgnore]
     public virtual ICollection<Claim> Claims { get; } = new List<Claim>();
 
     public virtual Organization Organization { get; set; } = null!;
