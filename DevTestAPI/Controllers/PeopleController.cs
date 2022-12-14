@@ -17,10 +17,19 @@ namespace DevTestAPI.Controllers
             _context = context;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetPeople()
+        //[HttpGet]
+        //public async Task<IActionResult> GetPeople()
+        //{
+        //    return Ok(await _context.People.Select(p => ConvertPerson(p)).ToListAsync());
+        //}
+
+        [HttpGet("{OrganizationId}")]
+        public async Task<IActionResult> GetPeople(int OrganizationId)
         {
-            return Ok(await _context.People.Select(p => ConvertPerson(p)).ToListAsync());
+            return Ok(await _context.People
+                .Where(p => p.OrganizationId == OrganizationId)
+                .Select(p => ConvertPerson(p))
+                .ToListAsync());
         }
 
         private static PersonApi ConvertPerson(Person person)
