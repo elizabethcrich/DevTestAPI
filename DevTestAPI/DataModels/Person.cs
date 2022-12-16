@@ -68,5 +68,6 @@ public partial class Person
 
     public virtual ICollection<PersonPhone> PersonPhones { get; } = new List<PersonPhone>();
 
+    [JsonIgnore]
     public virtual ICollection<PersonRelated> PersonRelateds { get; } = new List<PersonRelated>();
 }
