@@ -17,6 +17,12 @@ namespace DevTestAPI.Controllers
             _context = context;
         }
 
+        [HttpGet("Organizations")]
+        public async Task<IActionResult> GetOrganizations()
+        {
+            return Ok(await _context.Organizations.ToListAsync());
+        }
+
         [HttpGet("{OrganizationId}")]
         public async Task<IActionResult> GetPeopleByOrgId(int OrganizationId)
         {
@@ -34,15 +40,15 @@ namespace DevTestAPI.Controllers
             return new PersonApi(person);
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> GetPeople()
-        //{
-        //    return Ok(await _context.People
-        //        .Include(p => p.Organization)
-        //        .Include(p => p.PersonEmails)
-        //        .Include(p => p.PersonPhones)
-        //        .Select(p => ConvertPerson(p))
-        //        .ToListAsync());
-        //}
+        [HttpGet]
+        public async Task<IActionResult> GetPeople()
+        {
+            return Ok(await _context.People
+                .Include(p => p.Organization)
+                .Include(p => p.PersonEmails)
+                .Include(p => p.PersonPhones)
+                .Select(p => ConvertPerson(p))
+                .ToListAsync());
+        }
     }
 }
