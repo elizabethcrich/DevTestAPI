@@ -1,5 +1,4 @@
 ﻿using DevTestAPI.DataModels;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,22 +15,14 @@ namespace DevTestAPI.Controllers
             _context = context;
         }
 
-        [HttpGet("{PersonId}")]
-        public async Task<IActionResult> GetClaimsByPersonId(int PersonId)
+        [HttpGet("Person")]
+        public async Task<IActionResult> GetClaimsByPersonId(int? PersonId = null, string? ExternalPersonId = null)
         {
             return Ok(await _context.Claims
-                .Where(c => c.ExternalPersonId == PersonId)
+                .Where(c => c.ExternalPersonId == PersonId || c.ExternalPerson.ExternalPersonId == ExternalPersonId)
                 .Include(c => c.ClaimFkcodes)
                 .ThenInclude(f => f.Fkcode)
-                .Include(c => c.ExternalPerson)
                 .ToListAsync());
         }
-
-        //[HttpGet]
-        //public async Task<IActionResult> GetClaims()
-        //{
-        //    var claims = await _context.Claims.ToListAsync();
-        //    return Ok(claims);
-        //}
     }
 }
